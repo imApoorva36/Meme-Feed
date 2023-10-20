@@ -4,6 +4,7 @@ import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import s from './meme.module.css';
 import html2canvas from 'html2canvas';
 import axios from 'axios';
+import MemeDisplay from '../eachmeme/page'
 
 
 interface Meme {
@@ -176,11 +177,11 @@ export default function Meme() {
           Save meme
         </button>
       </div>
-      <div ref={memeContainerRef} className={s.meme}>
-        <img src={meme.randomImage} alt="Meme" className={s.memeimage} />
-        <h2 className={s.memetexttop}>{meme.topText}</h2>
-        <h2 className={s.memetextbottom}>{meme.bottomText}</h2>
-      </div>
+      <MemeDisplay
+        randomImage={meme.randomImage}
+        topText={meme.topText}
+        bottomText={meme.bottomText}
+      />
     </main>
   );
 }

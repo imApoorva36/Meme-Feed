@@ -24,6 +24,19 @@
     cursor: pointer;
 }
 
+.downloadmemebutton{
+    grid-column: 1 / -1;
+    font-family: "Karla", sans-serif;
+    border-radius: 5px;
+    background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    max-width: 30%;
+    margin: auto;
+    padding: 10px;
+}
+
 .meme {
     position: relative;
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Link from "next/link"
+import Header from './Header';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,23 +12,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  username 
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  username: string;
 }) {
   return (
     <html lang="en">
 			<body className={inter.className}>
-				<header>
-					<Link href = "/"><img src = {"/assets/images/logo.png"} /></Link>
-          <h2 className="header--title">Meme Generator</h2>
-					<nav>
-						<ul>
-							<li><Link href = "/">HOME</Link></li>
-              <li><Link href = "/meme">Memes</Link></li>
-              <li><Link href = "/allmeme">All Memes</Link></li>
-						</ul>
-					</nav>
-				</header>
+        <Header username={username} />
 				{children}
 			</body>
 		</html>

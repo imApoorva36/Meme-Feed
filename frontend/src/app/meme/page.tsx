@@ -1,6 +1,7 @@
 
 'use client'; // Add this line to mark the component as a Client Component
 import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { useAuth } from '../useAuth'; // Import the useAuth hook
 import s from './meme.module.css';
 import axios from 'axios';
 import MemeDisplay from '../eachmeme/page'
@@ -17,6 +18,8 @@ interface MemeData {
 }
 
 export default function Meme() {
+    useAuth();
+
   const [meme, setMeme] = useState<Meme>({
     topText: '',
     bottomText: '',
@@ -69,6 +72,7 @@ export default function Meme() {
 
         // Handle the response, e.g., show a success message
         console.log('Meme saved successfully!', response2.data);
+        alert('Meme saved successfully!');
     } catch (error) {
         // Handle any errors, e.g., show an error message
         console.error('Failed to save meme', error);
@@ -133,6 +137,7 @@ export default function Meme() {
           link.download = 'meme.png';
   
           link.click();
+          alert("Download Successful!!");
         }
       };
   

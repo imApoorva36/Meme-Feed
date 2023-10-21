@@ -44,6 +44,7 @@ export default function Register() {
 
     return (
         <main className={`${s.register} pd-top`}>
+            <h2>Wecome to Register Page, enter your details to be Registered!!</h2><br />
  			<form onSubmit={submit}>
  				<label>Username: </label>
  				<input

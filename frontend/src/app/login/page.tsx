@@ -6,6 +6,7 @@ import ENDPOINT from '@/helpers/endpoint'
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter(); // Initialize the router object
@@ -23,7 +24,9 @@ export default function Login() {
                     username: email,  // Use email as the username
                     password,
                 }),
+                
             });
+            
 
             if (res.status === 401) {
                 alert('Wrong credentials');
@@ -32,10 +35,12 @@ export default function Login() {
                 // Save the JWT token to cookies or local storage
                 document.cookie = `access_token=${data.access}`;
                 document.cookie = `refresh_token=${data.refresh}`;
-                
+                const username=email;
+                setUsername(email);
+                console.log('Username:', email);
                 // Redirect to the desired page on successful login
                 router.push('/meme');
-                alert('Login Successfull!!')
+                alert('Login Successfull!')
             }
         } catch (error) {
             console.error('Login error:', error);
@@ -47,6 +52,7 @@ export default function Login() {
 	
     return (
         <main className={`${s.login} pd-top`}>
+            <h2>Wecome to Login Page, enter your details to be logged into your account!!</h2><br />
  			<form onSubmit={submit}>
  				<label htmlFor="email">Email: </label>
  				<input

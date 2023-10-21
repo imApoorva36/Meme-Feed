@@ -160,8 +160,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-# Actual directory user files go to
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+# settings.py
 
-# URL used to access the media
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

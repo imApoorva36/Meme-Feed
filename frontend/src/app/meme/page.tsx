@@ -85,64 +85,67 @@ export default function Meme() {
   }
 
   function downloadMeme() {
+    console.log('Button clicked');
+  
     if (memeContainerRef.current) {
-      // Create an Image object for the meme image
+        console.log("entered");
       const image = new Image();
-      image.crossOrigin = 'anonymous'; // Allow cross-origin image
+      image.crossOrigin = 'anonymous';
       image.src = meme.randomImage;
-
+  
       image.onload = function () {
-        // Set the canvas dimensions to match the image dimensions
-        const canvasWidth = image.width; // Set canvas width to match the image width
-        const canvasHeight = image.height; // Set canvas height to match the image height
-
+        console.log('Image loaded successfully');
+        const canvasWidth = image.width;
+        const canvasHeight = image.height;
+  
         const canvas = document.createElement('canvas');
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
         const ctx = canvas.getContext('2d');
-
+        console.log(canvas);
         if (ctx) {
-          // Draw the image on the canvas
+          console.log('Canvas context obtained');
+  
           ctx.drawImage(image, 0, 0);
-
-          // Apply text styles
-          ctx.font = '3em impact, sans-serif'; // Adjust the font size as needed
+          ctx.font = '3em impact, sans-serif';
           ctx.textAlign = 'center';
           ctx.fillStyle = 'white';
-
-          // Add a text shadow
+  
           ctx.shadowColor = 'black';
-          ctx.shadowBlur = 5; // Adjust the blur as needed
-          ctx.shadowOffsetX = 2; // Adjust the X offset as needed
-          ctx.shadowOffsetY = 2; // Adjust the Y offset as needed
-
-          // Calculate text position for the top text
+          ctx.shadowBlur = 5;
+          ctx.shadowOffsetX = 2;
+          ctx.shadowOffsetY = 2;
+  
           const textTopX = canvasWidth / 2;
           const textTopY = canvasHeight * 0.1;
-          ctx.textBaseline = 'top'; // Set text baseline to align from the top
+          ctx.textBaseline = 'top';
           ctx.fillText(meme.topText.toUpperCase(), textTopX, textTopY);
-
-          // Calculate text position for the bottom text
+  
           const textBottomX = canvasWidth / 2;
           const textBottomY = canvasHeight * 0.9;
-          ctx.textBaseline = 'bottom'; // Set text baseline to align from the bottom
+          ctx.textBaseline = 'bottom';
           ctx.fillText(meme.bottomText.toUpperCase(), textBottomX, textBottomY);
-
-          // Create a data URL for the canvas
+  
           const dataURL = canvas.toDataURL('image/png');
-
-          // Create a temporary link element to trigger the download
+  
           const link = document.createElement('a');
           link.href = dataURL;
           link.download = 'meme.png';
-
-          // Trigger a click event on the link to download the image
+  
           link.click();
         }
       };
+  
+      image.onerror = function () {
+        console.error('Image loading failed');
+      };
+    }
+    else{
+        console.log("If statement no entered!!")
     }
   }
-
+  
+  
 
 
   return (
@@ -175,12 +178,14 @@ export default function Meme() {
         <button className={s.downloadmemebutton} onClick={saveMeme}>
           Save meme
         </button>
+      </div >
+      <div ref={memeContainerRef} className={s.memeContainer}>
+        <MemeDisplay
+            randomImage={meme.randomImage}
+            topText={meme.topText}
+            bottomText={meme.bottomText}
+        />
       </div>
-      <MemeDisplay
-        randomImage={meme.randomImage}
-        topText={meme.topText}
-        bottomText={meme.bottomText}
-      />
     </main>
   );
 }

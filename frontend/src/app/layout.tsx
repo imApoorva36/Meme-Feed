@@ -24,6 +24,8 @@ export default function RootLayout({
 					<nav>
 						<ul>
 							<li><Link href = "/">HOME</Link></li>
+              <li><Link href = "/meme">Memes</Link></li>
+              <li><Link href = "/allmeme">All Memes</Link></li>
 						</ul>
 					</nav>
 				</header>

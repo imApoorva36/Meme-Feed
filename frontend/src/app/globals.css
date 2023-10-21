@@ -13,6 +13,7 @@ body {
 
 
 header {
+  z-index: 1;
   height: var(--header-height);
   width: 100%;
   position: fixed;

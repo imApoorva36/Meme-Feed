@@ -13,7 +13,7 @@ interface MemeDisplayProps {
 
 const MemeDisplay: React.FC<MemeDisplayProps> = ({ randomImage, topText, bottomText }) => {
   return (
-    <div>
+    <div className={s.meme_container}>
       <div className={s.meme}>
         <img src={randomImage} alt="Meme" className={s.memeimage} />
         <h2 className={s.memetexttop}>{topText}</h2>

@@ -4,6 +4,7 @@ import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import axios from 'axios';
 import MemeDisplay  from '../eachmeme/page';
+import s from './allmeme.module.css'
 
 export default function AllMemes() {
   const [memes, setMemes] = useState([]);
@@ -22,17 +23,25 @@ export default function AllMemes() {
 
 
   return (
-    <div>
-      <h1>All Memes</h1>
-      <ul>
-        {memes.map((meme, index) => (
-                <MemeDisplay
-                randomImage={meme.meme_image}
-                topText={meme.meme_title}
-                bottomText={meme.meme_description}
-              />
-        ))}
-      </ul>
-    </div>
+    <main>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>
+        <h1>All Memes</h1>
+        <div className={s.all_meme}>
+          {memes.map((meme, index) => (
+                  <MemeDisplay
+                  randomImage={meme.meme_image}
+                  topText={meme.meme_title}
+                  bottomText={meme.meme_description}
+                />
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }

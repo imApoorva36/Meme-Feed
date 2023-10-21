@@ -1,0 +1,6 @@
+.all_meme{
+    display: grid;
+    gap: 50px;
+    max-width: fit-content;
+    margin: auto;
+}

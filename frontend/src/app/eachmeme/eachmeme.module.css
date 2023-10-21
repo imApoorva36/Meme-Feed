@@ -4,10 +4,17 @@
 
 .memeimage {
     max-width: 100%;
-    border-radius: 3px;
-    /* align-items: center; */
-    margin: auto;
+    width: 700px;
+    height: 600px;
+    border: 3px solid #434242;
+    border-radius: 10px;
     display: block;
+    margin: auto;
+    transition: transform 0.2s ease;
+  }
+
+.memeimage:hover {
+    transform: scale(1.1);
 }
 
 .memetexttop {
@@ -60,4 +67,12 @@
         -2px 0 0 #000,
         2px 2px 5px #000;
     bottom: 0;
+}
+
+.meme_container{
+    width: fit-content;
+    padding: 5%;
+    background-color:#1c1c1c;
+    border-radius: 20px;
+    display: block;
 }

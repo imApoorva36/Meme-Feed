@@ -1,46 +1,47 @@
-// pages/allMemes.tsx
-'use client'; // Add this line to mark the component as a Client Component
-import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
-import html2canvas from 'html2canvas';
+'use client'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import MemeDisplay  from '../eachmeme/page';
-import s from './allmeme.module.css'
+import MemeDisplay from '../eachmeme/page';
+import s from './allmeme.module.css';
+
+interface Meme {
+  id: number;
+  meme_title: string;
+  meme_description: string;
+  meme_image: string | null;
+}
 
 export default function AllMemes() {
-  const [memes, setMemes] = useState([]);
+  const [memes, setMemes] = useState<Meme[]>([]);
 
   useEffect(() => {
-    // Fetch all memes from your Django API
-    axios.get('http://127.0.0.1:8000/api/save_meme/')
-      .then((response) => {
+    const fetchMemes = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/save_meme/');
         setMemes(response.data);
         console.log(response.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Failed to fetch memes', error);
-      });
-  }, []);
+      }
+    };
 
+    fetchMemes();
+  }, []);
 
   return (
     <main>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>
+      <div className={s.all_meme}>
         <h1>All Memes</h1>
-        <div className={s.all_meme}>
-          {memes.map((meme, index) => (
-                  <MemeDisplay
-                  randomImage={meme.meme_image}
-                  topText={meme.meme_title}
-                  bottomText={meme.meme_description}
-                />
-          ))}
-        </div>
+        {memes.map((meme) => (
+          meme.meme_image && (
+            <MemeDisplay
+              key={meme.id}
+              randomImage={meme.meme_image}
+              topText={meme.meme_title}
+              bottomText={meme.meme_description}
+            />
+          )
+        ))}
       </div>
     </main>
   );

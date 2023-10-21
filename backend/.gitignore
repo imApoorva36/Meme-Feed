@@ -1,0 +1,55 @@
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore database files
+db.sqlite3
+
+# Ignore media and static files
+media/
+static/
+
+# Ignore log files
+*.log
+
+# Ignore environment-specific settings
+*.env
+
+# Ignore virtual environment
+venv/
+
+# Ignore local development settings
+local_settings.py
+
+# Ignore secret key settings
+secret_key.txt
+
+# Ignore migration files
+*/migrations/
+
+# Ignore local settings for VSCode
+.vscode/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Python bytecode files
+*.pyo
+*.pyd
+
+# Ignore editor-specific files
+*.swp
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore test coverage reports
+htmlcov/
+.coverage
+
+# Ignore test data
+test_data/
+
+# Ignore Docker related files
+Dockerfile
+docker-compose.yml

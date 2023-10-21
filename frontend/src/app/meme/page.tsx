@@ -2,7 +2,6 @@
 'use client'; // Add this line to mark the component as a Client Component
 import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import s from './meme.module.css';
-import html2canvas from 'html2canvas';
 import axios from 'axios';
 import MemeDisplay from '../eachmeme/page'
 

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Meme
+from django.contrib.auth import get_user_model
 
 class MemeSerializer(serializers.ModelSerializer):
     class Meta:

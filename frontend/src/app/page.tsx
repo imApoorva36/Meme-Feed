@@ -9,7 +9,9 @@ export default function Home() {
 				<h1>MEME Feed</h1>
 				<p>Get ready for some Fun!</p>
 				<div className = {s.buttons}>
-					<Link href = "/meme">Memes</Link>
+          <Link href = "/login">Login</Link>
+					<Link href = "/register">Register</Link>
+					<Link href = "/logout">Logout</Link>
 				</div>
 			</div>
 		</main>

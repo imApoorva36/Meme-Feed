@@ -2,7 +2,7 @@ from django.urls import path, include
 from . import views
 from .views import index
 from rest_framework import routers
-from .views import MyModelViewSet
+from .views import MemeViewSet
 from .api import router
 from rest_framework_simplejwt import views as jwt_views
 from django.conf import settings

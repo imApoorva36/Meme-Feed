@@ -3,6 +3,7 @@
 import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { useAuth } from '../useAuth'; // Import the useAuth hook
 import s from './meme.module.css';
+import { useCookies } from 'react-cookie'; // Import the useCookies hook
 import axios from 'axios';
 import MemeDisplay from '../eachmeme/page'
 
@@ -19,7 +20,9 @@ interface MemeData {
 
 export default function Meme() {
     useAuth();
-
+    const [cookies] = useCookies(['access_token']);
+    const access_token = cookies.access_token;
+    console.log(access_token);
   const [meme, setMeme] = useState<Meme>({
     topText: '',
     bottomText: '',
@@ -61,10 +64,10 @@ export default function Meme() {
 
         // Append the image as a file
         formData.append('meme_image', blob, 'meme.jpg');
-
+        console.log("THe access token", access_token);
         const axiosConfig = {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${access_token}`,
             },
         };
 
@@ -90,18 +93,18 @@ export default function Meme() {
 
   function downloadMeme() {
     console.log('Button clicked');
-  
+
     if (memeContainerRef.current) {
         console.log("entered");
       const image = new Image();
       image.crossOrigin = 'anonymous';
       image.src = meme.randomImage;
-  
+
       image.onload = function () {
         console.log('Image loaded successfully');
         const canvasWidth = image.width;
         const canvasHeight = image.height;
-  
+
         const canvas = document.createElement('canvas');
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
@@ -109,38 +112,38 @@ export default function Meme() {
         console.log(canvas);
         if (ctx) {
           console.log('Canvas context obtained');
-  
+
           ctx.drawImage(image, 0, 0);
           ctx.font = '3em impact, sans-serif';
           ctx.textAlign = 'center';
           ctx.fillStyle = 'white';
-  
+
           ctx.shadowColor = 'black';
           ctx.shadowBlur = 5;
           ctx.shadowOffsetX = 2;
           ctx.shadowOffsetY = 2;
-  
+
           const textTopX = canvasWidth / 2;
           const textTopY = canvasHeight * 0.1;
           ctx.textBaseline = 'top';
           ctx.fillText(meme.topText.toUpperCase(), textTopX, textTopY);
-  
+
           const textBottomX = canvasWidth / 2;
           const textBottomY = canvasHeight * 0.9;
           ctx.textBaseline = 'bottom';
           ctx.fillText(meme.bottomText.toUpperCase(), textBottomX, textBottomY);
-  
+
           const dataURL = canvas.toDataURL('image/png');
-  
+
           const link = document.createElement('a');
           link.href = dataURL;
           link.download = 'meme.png';
-  
+
           link.click();
           alert("Download Successful!!");
         }
       };
-  
+
       image.onerror = function () {
         console.error('Image loading failed');
       };
@@ -149,8 +152,8 @@ export default function Meme() {
         console.log("If statement no entered!!")
     }
   }
-  
-  
+
+
 
 
   return (

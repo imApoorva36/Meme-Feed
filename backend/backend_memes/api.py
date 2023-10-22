@@ -1,6 +1,6 @@
 # api.py
 
 from rest_framework import routers
-from .views import MyModelViewSet
+from .views import MemeViewSet
 router = routers.DefaultRouter()
-router.register(r'save_meme', MyModelViewSet)
+router.register(r'save_meme', MemeViewSet)

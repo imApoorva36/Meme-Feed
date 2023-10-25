@@ -3,6 +3,7 @@ from django_nextjs.render import render_nextjs_page_sync
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
+from rest_framework.views import APIView
 # from .models import teams, questions, scoreboard
 # from .serializers import TeamsSerializer, QuestionsSerializer, ScoreboardSerializer
 from rest_framework.generics import RetrieveAPIView
@@ -25,18 +26,32 @@ from .serializers import MemeSerializer
 from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.authentication import TokenAuthentication  # Import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
+def index(request, path):
+    return render_nextjs_page_sync(request)
 
 class MemeViewSet(viewsets.ModelViewSet):
     queryset = Meme.objects.all()
     serializer_class = MemeSerializer
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser)  
+
+    @action(detail=True, methods=['post'])
+    @permission_classes([IsAuthenticated])  # Add this line
+    def like(self, request, pk):
+        meme = self.get_object()
+        username = request.data.get('username', None)
+        user = User.objects.get(username=username)
+        if username:
+            meme.likes.add(user)
+            meme.save()
+            return Response({'message': 'Meme liked successfully', 'likes': meme.likes.count()}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'You have already liked this meme', 'likes': meme.likes.count()}, status=status.HTTP_200_OK)
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)  # Assign the authenticated user as the owner
-
-
-
+        serializer.save(owner=self.request.user) 
 
 @api_view(['POST'])
 def register(request):

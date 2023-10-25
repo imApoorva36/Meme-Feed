@@ -1,5 +1,5 @@
 # Meme Feed
-This is a Repository for the Web Enthusiasts Club's Recruitment of Google Developers Student Clubs SIG wherein [Apoorva Agrawal](https://github.com/imApoorva36) and [Sanjeev Holla S](https://github.com/sanjeevholla26) colaborated to do this project.
+### This is a Repository for the Web Enthusiasts Club's Recruitment of Google Developers Student Clubs SIG wherein [Apoorva Agrawal](https://github.com/imApoorva36) and [Sanjeev Holla S](https://github.com/sanjeevholla26) collaborated to do this project.
 ---
 ### Video Recording
 #### The Recording of the functioning with detailed explanation of our Meme Feed Project can be found [here](https://drive.google.com/file/d/17x2AKoKNZJsnR0dy-kuKwXmVDm2xRpu4/view?usp=sharing)

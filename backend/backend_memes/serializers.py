@@ -7,5 +7,5 @@ class MemeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Meme
-        fields = ['id', 'meme_title', 'meme_description', 'meme_image', 'owner']
+        fields =  '__all__' 
 

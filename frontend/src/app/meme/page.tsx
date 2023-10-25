@@ -22,7 +22,7 @@ export default function Meme() {
     useAuth();
     const [cookies] = useCookies(['access_token']);
     const access_token = cookies.access_token;
-    console.log(access_token);
+    // console.log(access_token);
   const [meme, setMeme] = useState<Meme>({
     topText: '',
     bottomText: '',
@@ -188,11 +188,13 @@ export default function Meme() {
         </button>
       </div >
       <div ref={memeContainerRef} className={s.memeContainer}>
-        <MemeDisplay
-            randomImage={meme.randomImage}
-            topText={meme.topText}
-            bottomText={meme.bottomText}
-        />
+        <div className={s.meme_container}>
+        <div className={s.meme}>
+            <img src={meme.randomImage} alt="Meme" className={s.memeimage} /><br />
+            <h2 className={s.memetexttop}>{meme.topText}</h2>
+            <h2 className={s.memetextbottom}>{meme.bottomText}</h2>
+        </div>
+    </div>
       </div>
     </main>
   );
